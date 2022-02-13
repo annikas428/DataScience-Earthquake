@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="9.10.001">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="9.10.001" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <operator activated="true" class="retrieve" compatibility="9.10.001" expanded="true" height="68" name="Household Demografics" width="90" x="45" y="289">
+        <parameter key="repository_entry" value="../data/csv_household_demographics"/>
+      </operator>
+      <operator activated="true" class="subprocess" compatibility="9.10.001" expanded="true" height="82" name="Population, Avarage Income, Education" width="90" x="313" y="289">
+        <process expanded="true">
+          <operator activated="true" class="select_attributes" compatibility="9.10.001" expanded="true" height="82" name="Select Features" width="90" x="45" y="34">
+            <parameter key="attribute_filter_type" value="subset"/>
+            <parameter key="attribute" value=""/>
+            <parameter key="attributes" value="education_level_household_head|income_level_household|size_household|ward_id|is_bank_account_present_in_household"/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="attribute_value"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="time"/>
+            <parameter key="block_type" value="attribute_block"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_matrix_row_start"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+          </operator>
+          <operator activated="true" class="filter_examples" compatibility="9.10.001" expanded="true" height="103" name="Delete Missing Values" width="90" x="179" y="34">
+            <parameter key="parameter_expression" value=""/>
+            <parameter key="condition_class" value="custom_filters"/>
+            <parameter key="invert_filter" value="false"/>
+            <list key="filters_list">
+              <parameter key="filters_entry_key" value="income_level_household.is_not_missing."/>
+              <parameter key="filters_entry_key" value="education_level_household_head.is_not_missing."/>
+              <parameter key="filters_entry_key" value="size_household.is_not_missing."/>
+              <parameter key="filters_entry_key" value="is_bank_account_present_in_household.is_not_missing."/>
+            </list>
+            <parameter key="filters_logic_and" value="true"/>
+            <parameter key="filters_check_metadata" value="true"/>
+          </operator>
+          <operator activated="true" class="read_csv" compatibility="9.10.001" expanded="true" height="68" name="Read Income Mapping CSV" width="90" x="45" y="187">
+            <parameter key="csv_file" value="D:\Master Data Science\3- Introduction to Data Science\mapping-income-level.csv"/>
+            <parameter key="column_separators" value=","/>
+            <parameter key="trim_lines" value="false"/>
+            <parameter key="use_quotes" value="true"/>
+            <parameter key="quotes_character" value="&quot;"/>
+            <parameter key="escape_character" value="\"/>
+            <parameter key="skip_comments" value="true"/>
+            <parameter key="comment_characters" value="#"/>
+            <parameter key="starting_row" value="1"/>
+            <parameter key="parse_numbers" value="true"/>
+            <parameter key="decimal_character" value="."/>
+            <parameter key="grouped_digits" value="false"/>
+            <parameter key="grouping_character" value=","/>
+            <parameter key="infinity_representation" value=""/>
+            <parameter key="date_format" value=""/>
+            <parameter key="first_row_as_names" value="true"/>
+            <list key="annotations"/>
+            <parameter key="time_zone" value="SYSTEM"/>
+            <parameter key="locale" value="English (United States)"/>
+            <parameter key="encoding" value="windows-1252"/>
+            <parameter key="read_all_values_as_polynominal" value="false"/>
+            <list key="data_set_meta_data_information">
+              <parameter key="0" value="OldValue.true.polynominal.attribute"/>
+              <parameter key="1" value="NewValue.true.polynominal.attribute"/>
+            </list>
+            <parameter key="read_not_matching_values_as_missings" value="false"/>
+          </operator>
+          <operator activated="true" class="replace_dictionary" compatibility="9.10.001" expanded="true" height="103" name="Replace Income Level" width="90" x="313" y="136">
+            <parameter key="return_preprocessing_model" value="false"/>
+            <parameter key="create_view" value="false"/>
+            <parameter key="attribute_filter_type" value="single"/>
+            <parameter key="attribute" value="income_level_household"/>
+            <parameter key="attributes" value=""/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="attribute_value"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="time"/>
+            <parameter key="block_type" value="attribute_block"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_matrix_row_start"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+            <parameter key="from_attribute" value="OldValue"/>
+            <parameter key="to_attribute" value="NewValue"/>
+            <parameter key="use_regular_expressions" value="true"/>
+            <parameter key="convert_to_lowercase" value="false"/>
+            <parameter key="first_match_only" value="false"/>
+          </operator>
+          <operator activated="true" class="parse_numbers" compatibility="9.10.001" expanded="true" height="82" name="Parse Numbers Income" width="90" x="447" y="136">
+            <parameter key="attribute_filter_type" value="single"/>
+            <parameter key="attribute" value="income_level_household"/>
+            <parameter key="attributes" value=""/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="nominal"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="file_path"/>
+            <parameter key="block_type" value="single_value"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="single_value"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+            <parameter key="decimal_character" value="."/>
+            <parameter key="grouped_digits" value="false"/>
+            <parameter key="grouping_character" value=","/>
+            <parameter key="infinity_representation" value=""/>
+            <parameter key="unparsable_value_handling" value="fail"/>
+          </operator>
+          <operator activated="true" class="read_csv" compatibility="9.10.001" expanded="true" height="68" name="Read Education Mappping CSV" width="90" x="45" y="289">
+            <parameter key="csv_file" value="D:/Master Data Science/3- Introduction to Data Science/mapping-education-level.csv"/>
+            <parameter key="column_separators" value=","/>
+            <parameter key="trim_lines" value="false"/>
+            <parameter key="use_quotes" value="true"/>
+            <parameter key="quotes_character" value="&quot;"/>
+            <parameter key="escape_character" value="\"/>
+            <parameter key="skip_comments" value="true"/>
+            <parameter key="comment_characters" value="#"/>
+            <parameter key="starting_row" value="1"/>
+            <parameter key="parse_numbers" value="true"/>
+            <parameter key="decimal_character" value="."/>
+            <parameter key="grouped_digits" value="false"/>
+            <parameter key="grouping_character" value=","/>
+            <parameter key="infinity_representation" value=""/>
+            <parameter key="date_format" value=""/>
+            <parameter key="first_row_as_names" value="true"/>
+            <list key="annotations"/>
+            <parameter key="time_zone" value="SYSTEM"/>
+            <parameter key="locale" value="English (United States)"/>
+            <parameter key="encoding" value="windows-1252"/>
+            <parameter key="read_all_values_as_polynominal" value="false"/>
+            <list key="data_set_meta_data_information">
+              <parameter key="0" value="OldValue.true.polynominal.attribute"/>
+              <parameter key="1" value="NewValue.true.polynominal.attribute"/>
+            </list>
+            <parameter key="read_not_matching_values_as_missings" value="false"/>
+          </operator>
+          <operator activated="true" class="replace_dictionary" compatibility="9.10.001" expanded="true" height="103" name="Replace Education" width="90" x="313" y="289">
+            <parameter key="return_preprocessing_model" value="false"/>
+            <parameter key="create_view" value="false"/>
+            <parameter key="attribute_filter_type" value="single"/>
+            <parameter key="attribute" value="education_level_household_head"/>
+            <parameter key="attributes" value=""/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="attribute_value"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="time"/>
+            <parameter key="block_type" value="attribute_block"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_matrix_row_start"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+            <parameter key="from_attribute" value="OldValue"/>
+            <parameter key="to_attribute" value="NewValue"/>
+            <parameter key="use_regular_expressions" value="false"/>
+            <parameter key="convert_to_lowercase" value="false"/>
+            <parameter key="first_match_only" value="true"/>
+          </operator>
+          <operator activated="true" class="parse_numbers" compatibility="9.10.001" expanded="true" height="82" name="Parse Numbers Income (2)" width="90" x="447" y="391">
+            <parameter key="attribute_filter_type" value="single"/>
+            <parameter key="attribute" value="education_level_household_head"/>
+            <parameter key="attributes" value=""/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="nominal"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="file_path"/>
+            <parameter key="block_type" value="single_value"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="single_value"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+            <parameter key="decimal_character" value="."/>
+            <parameter key="grouped_digits" value="false"/>
+            <parameter key="grouping_character" value=","/>
+            <parameter key="infinity_representation" value=""/>
+            <parameter key="unparsable_value_handling" value="fail"/>
+          </operator>
+          <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="124" name="Multiply" width="90" x="581" y="442"/>
+          <operator activated="true" class="blending:pivot" compatibility="9.10.001" expanded="true" height="82" name="Pivot (3)" width="90" x="715" y="493">
+            <parameter key="group_by_attributes" value="ward_id"/>
+            <parameter key="column_grouping_attribute" value="is_bank_account_present_in_household"/>
+            <list key="aggregation_attributes">
+              <parameter key="is_bank_account_present_in_household" value="count"/>
+            </list>
+            <parameter key="use_default_aggregation" value="false"/>
+            <parameter key="default_aggregation_function" value="first"/>
+          </operator>
+          <operator activated="true" class="replace_missing_values" compatibility="9.10.001" expanded="true" height="103" name="Replace Missing Values (2)" width="90" x="849" y="493">
+            <parameter key="return_preprocessing_model" value="false"/>
+            <parameter key="create_view" value="false"/>
+            <parameter key="attribute_filter_type" value="subset"/>
+            <parameter key="attribute" value=""/>
+            <parameter key="attributes" value="count(is_bank_account_present_in_household)_0|count(is_bank_account_present_in_household)_1"/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="attribute_value"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="time"/>
+            <parameter key="block_type" value="attribute_block"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_matrix_row_start"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+            <parameter key="default" value="value"/>
+            <list key="columns"/>
+            <parameter key="replenishment_value" value="0"/>
+          </operator>
+          <operator activated="true" class="generate_attributes" compatibility="9.10.001" expanded="true" height="82" name="Generate Attributes (2)" width="90" x="983" y="493">
+            <list key="function_descriptions">
+              <parameter key="Percentage_Bankaccount" value="[count(is_bank_account_present_in_household)_1]/([count(is_bank_account_present_in_household)_0]+[count(is_bank_account_present_in_household)_1])"/>
+            </list>
+            <parameter key="keep_all" value="true"/>
+          </operator>
+          <operator activated="true" class="set_role" compatibility="9.10.001" expanded="true" height="82" name="Set Roles Ward (3)" width="90" x="1117" y="493">
+            <parameter key="attribute_name" value="ward_id"/>
+            <parameter key="target_role" value="id"/>
+            <list key="set_additional_roles"/>
+          </operator>
+          <operator activated="true" class="blending:pivot" compatibility="9.10.001" expanded="true" height="82" name="Pivot (2)" width="90" x="715" y="391">
+            <parameter key="group_by_attributes" value="ward_id"/>
+            <parameter key="column_grouping_attribute" value="education_level_household_head"/>
+            <list key="aggregation_attributes">
+              <parameter key="education_level_household_head" value="count"/>
+            </list>
+            <parameter key="use_default_aggregation" value="false"/>
+            <parameter key="default_aggregation_function" value="first"/>
+          </operator>
+          <operator activated="true" breakpoints="after" class="replace_missing_values" compatibility="9.10.001" expanded="true" height="103" name="Replace Missing Values" width="90" x="849" y="391">
+            <parameter key="return_preprocessing_model" value="false"/>
+            <parameter key="create_view" value="false"/>
+            <parameter key="attribute_filter_type" value="subset"/>
+            <parameter key="attribute" value=""/>
+            <parameter key="attributes" value="count(education_level_household_head)_-Infinity|count(education_level_household_head)_Infinity"/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="attribute_value"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="time"/>
+            <parameter key="block_type" value="attribute_block"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_matrix_row_start"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+            <parameter key="default" value="value"/>
+            <list key="columns"/>
+            <parameter key="replenishment_value" value="0"/>
+          </operator>
+          <operator activated="true" breakpoints="after" class="generate_attributes" compatibility="9.10.001" expanded="true" height="82" name="Generate Attributes" width="90" x="983" y="391">
+            <list key="function_descriptions">
+              <parameter key="Percentage_Education_Level" value="[count(education_level_household_head)_1.0]/([count(education_level_household_head)_0.0]+[count(education_level_household_head)_1.0])"/>
+            </list>
+            <parameter key="keep_all" value="true"/>
+          </operator>
+          <operator activated="true" class="set_role" compatibility="9.10.001" expanded="true" height="82" name="Set Roles Ward (2)" width="90" x="1117" y="391">
+            <parameter key="attribute_name" value="ward_id"/>
+            <parameter key="target_role" value="id"/>
+            <list key="set_additional_roles"/>
+          </operator>
+          <operator activated="true" class="blending:pivot" compatibility="9.10.001" expanded="true" height="82" name="Pivot" width="90" x="581" y="289">
+            <parameter key="group_by_attributes" value="ward_id"/>
+            <parameter key="column_grouping_attribute" value=""/>
+            <list key="aggregation_attributes">
+              <parameter key="size_household" value="sum"/>
+              <parameter key="income_level_household" value="average"/>
+            </list>
+            <parameter key="use_default_aggregation" value="false"/>
+            <parameter key="default_aggregation_function" value="first"/>
+          </operator>
+          <operator activated="true" class="set_role" compatibility="9.10.001" expanded="true" height="82" name="Set Roles Ward" width="90" x="715" y="238">
+            <parameter key="attribute_name" value="ward_id"/>
+            <parameter key="target_role" value="id"/>
+            <list key="set_additional_roles"/>
+          </operator>
+          <operator activated="true" class="blending:rename" compatibility="9.10.001" expanded="true" height="82" name="Rename Features" width="90" x="849" y="289">
+            <list key="rename attributes">
+              <parameter key="sum(size_household)" value="Population"/>
+              <parameter key="average(income_level_household)" value="average_income"/>
+            </list>
+            <parameter key="from_attribute" value=""/>
+            <parameter key="to_attribute" value=""/>
+          </operator>
+          <operator activated="true" class="concurrency:join" compatibility="9.10.001" expanded="true" height="82" name="Join" width="90" x="1251" y="391">
+            <parameter key="remove_double_attributes" value="true"/>
+            <parameter key="join_type" value="inner"/>
+            <parameter key="use_id_attribute_as_key" value="false"/>
+            <list key="key_attributes">
+              <parameter key="ward_id" value="ward_id"/>
+            </list>
+            <parameter key="keep_both_join_attributes" value="false"/>
+          </operator>
+          <operator activated="true" class="concurrency:join" compatibility="9.10.001" expanded="true" height="82" name="Join (2)" width="90" x="1385" y="442">
+            <parameter key="remove_double_attributes" value="true"/>
+            <parameter key="join_type" value="inner"/>
+            <parameter key="use_id_attribute_as_key" value="false"/>
+            <list key="key_attributes">
+              <parameter key="ward_id" value="ward_id"/>
+            </list>
+            <parameter key="keep_both_join_attributes" value="false"/>
+          </operator>
+          <operator activated="true" class="select_attributes" compatibility="9.10.001" expanded="true" height="82" name="Select Attributes" width="90" x="1452" y="289">
+            <parameter key="attribute_filter_type" value="subset"/>
+            <parameter key="attribute" value=""/>
+            <parameter key="attributes" value="average_income|Percentage_Bankaccount|Percentage_Education_Level|Population|ward_id"/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="attribute_value"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="time"/>
+            <parameter key="block_type" value="attribute_block"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_matrix_row_start"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+          </operator>
+          <connect from_port="in 1" to_op="Select Features" to_port="example set input"/>
+          <connect from_op="Select Features" from_port="example set output" to_op="Delete Missing Values" to_port="example set input"/>
+          <connect from_op="Delete Missing Values" from_port="example set output" to_op="Replace Income Level" to_port="example set input"/>
+          <connect from_op="Read Income Mapping CSV" from_port="output" to_op="Replace Income Level" to_port="dictionary"/>
+          <connect from_op="Replace Income Level" from_port="example set output" to_op="Parse Numbers Income" to_port="example set input"/>
+          <connect from_op="Parse Numbers Income" from_port="example set output" to_op="Replace Education" to_port="example set input"/>
+          <connect from_op="Read Education Mappping CSV" from_port="output" to_op="Replace Education" to_port="dictionary"/>
+          <connect from_op="Replace Education" from_port="example set output" to_op="Parse Numbers Income (2)" to_port="example set input"/>
+          <connect from_op="Parse Numbers Income (2)" from_port="example set output" to_op="Multiply" to_port="input"/>
+          <connect from_op="Multiply" from_port="output 1" to_op="Pivot" to_port="input"/>
+          <connect from_op="Multiply" from_port="output 2" to_op="Pivot (2)" to_port="input"/>
+          <connect from_op="Multiply" from_port="output 3" to_op="Pivot (3)" to_port="input"/>
+          <connect from_op="Pivot (3)" from_port="output" to_op="Replace Missing Values (2)" to_port="example set input"/>
+          <connect from_op="Replace Missing Values (2)" from_port="example set output" to_op="Generate Attributes (2)" to_port="example set input"/>
+          <connect from_op="Generate Attributes (2)" from_port="example set output" to_op="Set Roles Ward (3)" to_port="example set input"/>
+          <connect from_op="Set Roles Ward (3)" from_port="example set output" to_op="Join (2)" to_port="right"/>
+          <connect from_op="Pivot (2)" from_port="output" to_op="Replace Missing Values" to_port="example set input"/>
+          <connect from_op="Replace Missing Values" from_port="example set output" to_op="Generate Attributes" to_port="example set input"/>
+          <connect from_op="Generate Attributes" from_port="example set output" to_op="Set Roles Ward (2)" to_port="example set input"/>
+          <connect from_op="Set Roles Ward (2)" from_port="example set output" to_op="Join" to_port="right"/>
+          <connect from_op="Pivot" from_port="output" to_op="Set Roles Ward" to_port="example set input"/>
+          <connect from_op="Set Roles Ward" from_port="example set output" to_op="Rename Features" to_port="example set input"/>
+          <connect from_op="Rename Features" from_port="example set output" to_op="Join" to_port="left"/>
+          <connect from_op="Join" from_port="join" to_op="Join (2)" to_port="left"/>
+          <connect from_op="Join (2)" from_port="join" to_op="Select Attributes" to_port="example set input"/>
+          <connect from_op="Select Attributes" from_port="example set output" to_port="out 1"/>
+          <portSpacing port="source_in 1" spacing="0"/>
+          <portSpacing port="source_in 2" spacing="0"/>
+          <portSpacing port="sink_out 1" spacing="0"/>
+          <portSpacing port="sink_out 2" spacing="0"/>
+        </process>
+      </operator>
+      <connect from_op="Household Demografics" from_port="output" to_op="Population, Avarage Income, Education" to_port="in 1"/>
+      <connect from_op="Population, Avarage Income, Education" from_port="out 1" to_port="result 1"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <portSpacing port="sink_result 2" spacing="0"/>
+    </process>
+  </operator>
+</process>
