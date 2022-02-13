@@ -11,7 +11,7 @@ Number of Building; csv_building_damage_assessment;
 Reconstruction; csv_building_damage_assessment;
 NumberDeaths; csv_household_earthquake_impact;
 Percentage Injury Loss; csv_household_earthquake_impact;
-Percentage Education drop;csv_household_earthquake_impact;
+Percentage Education drop;csv_household_earthquake_impact;(zu viel missing)
 Shelter Condition; csv_household_earthquake_impact;
 Number Schools; csv_building_ownership_and_use; 
 Number Health Post; csv_building_ownership_and_use;
