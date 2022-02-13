@@ -18,7 +18,7 @@
       <operator activated="true" class="retrieve" compatibility="9.10.001" expanded="true" height="68" name="Retrieve csv_building_ownership_and_use" width="90" x="45" y="187">
         <parameter key="repository_entry" value="../data/csv_building_ownership_and_use"/>
       </operator>
-      <operator activated="true" class="subprocess" compatibility="9.10.001" expanded="true" height="82" name="Number Schools" width="90" x="179" y="187">
+      <operator activated="true" class="subprocess" compatibility="9.10.001" expanded="true" height="82" name="Number Schools" width="90" x="246" y="187">
         <process expanded="true">
           <operator activated="true" class="select_attributes" compatibility="9.10.001" expanded="true" height="82" name="Select Attributes (3)" width="90" x="246" y="136">
             <parameter key="attribute_filter_type" value="subset"/>
@@ -69,7 +69,7 @@
       <operator activated="true" class="retrieve" compatibility="9.10.001" expanded="true" height="68" name="Household Demografics" width="90" x="45" y="289">
         <parameter key="repository_entry" value="../data/csv_household_demographics"/>
       </operator>
-      <operator activated="true" class="subprocess" compatibility="9.10.001" expanded="true" height="82" name="Population, Avarage Income, Education" width="90" x="179" y="289">
+      <operator activated="true" class="subprocess" compatibility="9.10.001" expanded="true" height="82" name="Population, Avarage Income, Education" width="90" x="246" y="289">
         <process expanded="true">
           <operator activated="true" class="select_attributes" compatibility="9.10.001" expanded="true" height="82" name="Select Attributes (4)" width="90" x="45" y="34">
             <parameter key="attribute_filter_type" value="subset"/>
@@ -204,7 +204,7 @@
       <operator activated="true" class="retrieve" compatibility="9.10.001" expanded="true" height="68" name="Retrieve csv_building_damage_assessment" width="90" x="45" y="391">
         <parameter key="repository_entry" value="../data/csv_building_damage_assessment"/>
       </operator>
-      <operator activated="true" class="subprocess" compatibility="9.10.001" expanded="true" height="82" name="Damage Grade" width="90" x="179" y="391">
+      <operator activated="true" class="subprocess" compatibility="9.10.001" expanded="true" height="82" name="Damage Grade" width="90" x="246" y="391">
         <process expanded="true">
           <operator activated="true" class="select_attributes" compatibility="9.10.001" expanded="true" height="82" name="Select Attributes (5)" width="90" x="112" y="136">
             <parameter key="attribute_filter_type" value="subset"/>
@@ -259,7 +259,7 @@
         <list key="key_attributes"/>
         <parameter key="keep_both_join_attributes" value="false"/>
       </operator>
-      <operator activated="true" class="subprocess" compatibility="9.10.001" expanded="true" height="82" name="Number Death, Percentage Injury Loss" width="90" x="179" y="85">
+      <operator activated="true" class="subprocess" compatibility="9.10.001" expanded="true" height="82" name="Number Death, Percentage Injury Loss" width="90" x="246" y="85">
         <process expanded="true">
           <operator activated="true" class="select_attributes" compatibility="9.10.001" expanded="true" height="82" name="Select Attributes (2)" width="90" x="112" y="136">
             <parameter key="attribute_filter_type" value="subset"/>
