@@ -1,0 +1,20 @@
+Name; Datei; 
+Population; csv_household_demographics;
+Percentage Formal Education; csv_household_demographics;
+Number households; csv_household_demographics;
+Median income; csv_household_demographics;
+Percentage Pipeline (Water); csv_household_resources;
+Percentage Electricity; csv_household_resources;
+Percentage Toliette; csv_household_resources;
+Percentage Cooking Fuel; csv_household_resources;
+Number of Building; csv_building_damage_assessment;
+Reconstruction; csv_building_damage_assessment;
+NumberDeaths; csv_household_earthquake_impact;
+Percentage Injury Loss; csv_household_earthquake_impact;
+Percentage Education drop;csv_household_earthquake_impact;
+Shelter Condition; csv_household_earthquake_impact;
+Number Schools; csv_building_ownership_and_use; 
+Number Health Post; csv_building_ownership_and_use;
+Percentage Bank Account; csv_household_demographics;
+Percentage Internet; csv_household_resources;
+
