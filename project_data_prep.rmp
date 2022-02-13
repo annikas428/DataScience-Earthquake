@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="9.10.001">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="9.10.001" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <operator activated="true" class="retrieve" compatibility="9.10.001" expanded="true" height="68" name="Retrieve csv_household_earthquake_impact" width="90" x="112" y="136">
+        <parameter key="repository_entry" value="//Local Repository/data/csv_household_earthquake_impact"/>
+      </operator>
+      <operator activated="true" class="productivity:execute_process" compatibility="9.10.001" expanded="true" height="68" name="Execute impact" width="90" x="313" y="136">
+        <parameter key="process_location" value="//Local Repository/processes/impact"/>
+        <parameter key="use_input" value="true"/>
+        <parameter key="store_output" value="false"/>
+        <parameter key="propagate_metadata_recursively" value="true"/>
+        <parameter key="cache_process" value="true"/>
+        <list key="macros"/>
+        <parameter key="fail_for_unknown_macros" value="true"/>
+      </operator>
+      <operator activated="true" class="retrieve" compatibility="9.10.001" expanded="true" height="68" name="Retrieve csv_building_damage_assessment" width="90" x="112" y="34">
+        <parameter key="repository_entry" value="//Local Repository/data/csv_building_damage_assessment"/>
+      </operator>
+      <operator activated="true" class="productivity:execute_process" compatibility="9.10.001" expanded="true" height="68" name="Execute damage_assessment" width="90" x="313" y="34">
+        <parameter key="process_location" value="//Local Repository/processes/damage_assessment"/>
+        <parameter key="use_input" value="true"/>
+        <parameter key="store_output" value="false"/>
+        <parameter key="propagate_metadata_recursively" value="true"/>
+        <parameter key="cache_process" value="true"/>
+        <list key="macros"/>
+        <parameter key="fail_for_unknown_macros" value="true"/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="9.10.001" expanded="true" height="82" name="Join" width="90" x="514" y="136">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="true"/>
+        <list key="key_attributes"/>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="retrieve" compatibility="9.10.001" expanded="true" height="68" name="Retrieve csv_building_ownership_and_use" width="90" x="112" y="238">
+        <parameter key="repository_entry" value="//Local Repository/data/csv_building_ownership_and_use"/>
+      </operator>
+      <operator activated="true" class="productivity:execute_process" compatibility="9.10.001" expanded="true" height="68" name="Execute ownership_and_use" width="90" x="313" y="238">
+        <parameter key="process_location" value="//Local Repository/processes/ownership_and_use"/>
+        <parameter key="use_input" value="true"/>
+        <parameter key="store_output" value="false"/>
+        <parameter key="propagate_metadata_recursively" value="true"/>
+        <parameter key="cache_process" value="true"/>
+        <list key="macros"/>
+        <parameter key="fail_for_unknown_macros" value="true"/>
+      </operator>
+      <operator activated="true" class="retrieve" compatibility="9.10.001" expanded="true" height="68" name="Retrieve csv_household_resources" width="90" x="112" y="340">
+        <parameter key="repository_entry" value="../data/csv_household_resources"/>
+      </operator>
+      <operator activated="true" class="productivity:execute_process" compatibility="9.10.001" expanded="true" height="82" name="Execute Household_resources_process" width="90" x="313" y="340">
+        <parameter key="process_location" value="Household_resources_process"/>
+        <parameter key="use_input" value="true"/>
+        <parameter key="store_output" value="false"/>
+        <parameter key="propagate_metadata_recursively" value="true"/>
+        <parameter key="cache_process" value="true"/>
+        <list key="macros"/>
+        <parameter key="fail_for_unknown_macros" value="true"/>
+      </operator>
+      <operator activated="true" class="set_role" compatibility="9.10.001" expanded="true" height="82" name="Set Role" width="90" x="447" y="340">
+        <parameter key="attribute_name" value="ward_id"/>
+        <parameter key="target_role" value="id"/>
+        <list key="set_additional_roles"/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="9.10.001" expanded="true" height="82" name="Join (2)" width="90" x="514" y="238">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="true"/>
+        <list key="key_attributes"/>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="retrieve" compatibility="9.10.001" expanded="true" height="68" name="Retrieve csv_household_demographics" width="90" x="112" y="442">
+        <parameter key="repository_entry" value="../data/csv_household_demographics"/>
+      </operator>
+      <operator activated="true" class="productivity:execute_process" compatibility="9.10.001" expanded="true" height="68" name="Execute csv_household_demographics" width="90" x="313" y="442">
+        <parameter key="process_location" value="csv_household_demographics"/>
+        <parameter key="use_input" value="true"/>
+        <parameter key="store_output" value="false"/>
+        <parameter key="propagate_metadata_recursively" value="true"/>
+        <parameter key="cache_process" value="true"/>
+        <list key="macros"/>
+        <parameter key="fail_for_unknown_macros" value="true"/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="9.10.001" expanded="true" height="82" name="Join (3)" width="90" x="581" y="391">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="true"/>
+        <list key="key_attributes"/>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="9.10.001" expanded="true" height="82" name="Join (4)" width="90" x="648" y="238">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="true"/>
+        <list key="key_attributes"/>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="write_csv" compatibility="9.10.001" expanded="true" height="82" name="Write CSV" width="90" x="715" y="85">
+        <parameter key="csv_file" value="C:/dev/DataScience-Earthquake/ward_data_earthquake.csv"/>
+        <parameter key="column_separator" value=";"/>
+        <parameter key="write_attribute_names" value="true"/>
+        <parameter key="quote_nominal_values" value="true"/>
+        <parameter key="format_date_attributes" value="true"/>
+        <parameter key="date_format" value="yyyy-MM-dd HH:mm:ss"/>
+        <parameter key="append_to_file" value="false"/>
+        <parameter key="encoding" value="SYSTEM"/>
+      </operator>
+      <connect from_op="Retrieve csv_household_earthquake_impact" from_port="output" to_op="Execute impact" to_port="input 1"/>
+      <connect from_op="Execute impact" from_port="result 1" to_op="Join" to_port="right"/>
+      <connect from_op="Retrieve csv_building_damage_assessment" from_port="output" to_op="Execute damage_assessment" to_port="input 1"/>
+      <connect from_op="Execute damage_assessment" from_port="result 1" to_op="Join" to_port="left"/>
+      <connect from_op="Join" from_port="join" to_op="Join (4)" to_port="left"/>
+      <connect from_op="Retrieve csv_building_ownership_and_use" from_port="output" to_op="Execute ownership_and_use" to_port="input 1"/>
+      <connect from_op="Execute ownership_and_use" from_port="result 1" to_op="Join (2)" to_port="left"/>
+      <connect from_op="Retrieve csv_household_resources" from_port="output" to_op="Execute Household_resources_process" to_port="input 1"/>
+      <connect from_op="Execute Household_resources_process" from_port="result 1" to_op="Set Role" to_port="example set input"/>
+      <connect from_op="Set Role" from_port="example set output" to_op="Join (2)" to_port="right"/>
+      <connect from_op="Join (2)" from_port="join" to_op="Join (3)" to_port="left"/>
+      <connect from_op="Retrieve csv_household_demographics" from_port="output" to_op="Execute csv_household_demographics" to_port="input 1"/>
+      <connect from_op="Execute csv_household_demographics" from_port="result 1" to_op="Join (3)" to_port="right"/>
+      <connect from_op="Join (3)" from_port="join" to_op="Join (4)" to_port="right"/>
+      <connect from_op="Join (4)" from_port="join" to_op="Write CSV" to_port="input"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+    </process>
+  </operator>
+</process>
