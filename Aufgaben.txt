@@ -1,0 +1,46 @@
+[x] Outlier entfernen
+	[]Average Income
+	[]Buildings_per_Population
+	[]Death per Population
+	[]has_water_post
+	[]has_electri_ post
+	[](Bankacoount)
+
+_________________________________________________-
+
+[] Outlier pro Feauture entfernen (danach normalisieren) @Olli
+
+[] DBSCAN- Anzahl Cluster identifizieren @Olli
+-> Screenshots, Begründung 
+
+Attribut Kombination: 
+
+-7: alle
+-5: !(has_electricity, average_income)
+-3: (damage_grade, has_water, education_level)
+
+[] Ellbogen-Diagramm k definieren (für alle Attribut-Kombination) @Sophie
+-> K-Means
+(-> K-Medoids)
+
+[] Modelle für Attribut Kombinationen (für alle Attribut-Kombination ): Cluster 4
+-> K-Means (einmal mit Ellbow)
+-> K-Medoids (einmal mit Ellbow)
+-> X-Means
+
+	[] Performanace-Messe: SSE, Davis Bouldin (Folie) @Sophie
+	[] Vergleichen der Performance-Werte (Folie) @Sophie
+	
+	[] Cluster visualisieren 
+		[] Paralllel (für alle) (Folie) @Annika
+		[] Scatter (nur wenn sinnvol) (+ Folien) @Annika
+
+[]Label: Cluster Visualisation (Annika)
+
+____________________________________________________________
+
+[]Rapid Miner schön 
+[]Präsentation 
+
+
+
