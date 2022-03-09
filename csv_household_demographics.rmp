@@ -181,7 +181,7 @@
             <parameter key="unparsable_value_handling" value="fail"/>
           </operator>
           <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="124" name="Multiply" width="90" x="581" y="442"/>
-          <operator activated="true" breakpoints="after" class="blending:pivot" compatibility="9.10.001" expanded="true" height="82" name="Bankaccount Aggregate to Ward" width="90" x="715" y="493">
+          <operator activated="true" class="blending:pivot" compatibility="9.10.001" expanded="true" height="82" name="Bankaccount Aggregate to Ward" width="90" x="715" y="493">
             <parameter key="group_by_attributes" value="ward_id"/>
             <parameter key="column_grouping_attribute" value="is_bank_account_present_in_household"/>
             <list key="aggregation_attributes">
@@ -220,7 +220,7 @@
             <parameter key="target_role" value="id"/>
             <list key="set_additional_roles"/>
           </operator>
-          <operator activated="true" breakpoints="after" class="blending:pivot" compatibility="9.10.001" expanded="true" height="82" name="Education Aggregate to Ward" width="90" x="715" y="391">
+          <operator activated="true" class="blending:pivot" compatibility="9.10.001" expanded="true" height="82" name="Education Aggregate to Ward" width="90" x="715" y="391">
             <parameter key="group_by_attributes" value="ward_id"/>
             <parameter key="column_grouping_attribute" value="education_level_household_head"/>
             <list key="aggregation_attributes">
