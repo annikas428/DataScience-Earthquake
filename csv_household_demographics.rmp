@@ -93,7 +93,7 @@
             <parameter key="convert_to_lowercase" value="false"/>
             <parameter key="first_match_only" value="false"/>
           </operator>
-          <operator activated="true" class="parse_numbers" compatibility="9.10.001" expanded="true" height="82" name="Parse Numbers Income" width="90" x="447" y="136">
+          <operator activated="true" class="parse_numbers" compatibility="9.10.001" expanded="true" height="82" name="Income Parse Numbers" width="90" x="447" y="136">
             <parameter key="attribute_filter_type" value="single"/>
             <parameter key="attribute" value="income_level_household"/>
             <parameter key="attributes" value=""/>
@@ -161,7 +161,7 @@
             <parameter key="convert_to_lowercase" value="false"/>
             <parameter key="first_match_only" value="true"/>
           </operator>
-          <operator activated="true" class="parse_numbers" compatibility="9.10.001" expanded="true" height="82" name="Parse Numbers Income (2)" width="90" x="447" y="391">
+          <operator activated="true" class="parse_numbers" compatibility="9.10.001" expanded="true" height="82" name="Education Parse Numbers" width="90" x="447" y="391">
             <parameter key="attribute_filter_type" value="single"/>
             <parameter key="attribute" value="education_level_household_head"/>
             <parameter key="attributes" value=""/>
@@ -181,7 +181,7 @@
             <parameter key="unparsable_value_handling" value="fail"/>
           </operator>
           <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="124" name="Multiply" width="90" x="581" y="442"/>
-          <operator activated="true" class="blending:pivot" compatibility="9.10.001" expanded="true" height="82" name="Pivot (3)" width="90" x="715" y="493">
+          <operator activated="true" breakpoints="after" class="blending:pivot" compatibility="9.10.001" expanded="true" height="82" name="Bankaccount Aggregate to Ward" width="90" x="715" y="493">
             <parameter key="group_by_attributes" value="ward_id"/>
             <parameter key="column_grouping_attribute" value="is_bank_account_present_in_household"/>
             <list key="aggregation_attributes">
@@ -209,7 +209,7 @@
             <list key="columns"/>
             <parameter key="replenishment_value" value="0"/>
           </operator>
-          <operator activated="true" class="generate_attributes" compatibility="9.10.001" expanded="true" height="82" name="Generate Attributes (2)" width="90" x="983" y="493">
+          <operator activated="true" class="generate_attributes" compatibility="9.10.001" expanded="true" height="82" name="Bankaccount calculate percentage" width="90" x="983" y="493">
             <list key="function_descriptions">
               <parameter key="Percentage_Bankaccount" value="[count(is_bank_account_present_in_household)_1]/([count(is_bank_account_present_in_household)_0]+[count(is_bank_account_present_in_household)_1])"/>
             </list>
@@ -220,7 +220,7 @@
             <parameter key="target_role" value="id"/>
             <list key="set_additional_roles"/>
           </operator>
-          <operator activated="true" class="blending:pivot" compatibility="9.10.001" expanded="true" height="82" name="Pivot (2)" width="90" x="715" y="391">
+          <operator activated="true" breakpoints="after" class="blending:pivot" compatibility="9.10.001" expanded="true" height="82" name="Education Aggregate to Ward" width="90" x="715" y="391">
             <parameter key="group_by_attributes" value="ward_id"/>
             <parameter key="column_grouping_attribute" value="education_level_household_head"/>
             <list key="aggregation_attributes">
@@ -229,7 +229,7 @@
             <parameter key="use_default_aggregation" value="false"/>
             <parameter key="default_aggregation_function" value="first"/>
           </operator>
-          <operator activated="true" breakpoints="after" class="replace_missing_values" compatibility="9.10.001" expanded="true" height="103" name="Replace Missing Values" width="90" x="849" y="391">
+          <operator activated="true" class="replace_missing_values" compatibility="9.10.001" expanded="true" height="103" name="Replace Missing Values" width="90" x="849" y="391">
             <parameter key="return_preprocessing_model" value="false"/>
             <parameter key="create_view" value="false"/>
             <parameter key="attribute_filter_type" value="subset"/>
@@ -248,7 +248,7 @@
             <list key="columns"/>
             <parameter key="replenishment_value" value="0"/>
           </operator>
-          <operator activated="true" breakpoints="after" class="generate_attributes" compatibility="9.10.001" expanded="true" height="82" name="Generate Attributes" width="90" x="983" y="391">
+          <operator activated="true" class="generate_attributes" compatibility="9.10.001" expanded="true" height="82" name="Education calculate percentage" width="90" x="983" y="391">
             <list key="function_descriptions">
               <parameter key="Percentage_Education_Level" value="[count(education_level_household_head)_1.0]/([count(education_level_household_head)_0.0]+[count(education_level_household_head)_1.0])"/>
             </list>
@@ -259,7 +259,7 @@
             <parameter key="target_role" value="id"/>
             <list key="set_additional_roles"/>
           </operator>
-          <operator activated="true" class="blending:pivot" compatibility="9.10.001" expanded="true" height="82" name="Pivot" width="90" x="581" y="289">
+          <operator activated="true" class="blending:pivot" compatibility="9.10.001" expanded="true" height="82" name="Aggregate Data to Ward" width="90" x="581" y="289">
             <parameter key="group_by_attributes" value="ward_id"/>
             <parameter key="column_grouping_attribute" value=""/>
             <list key="aggregation_attributes">
@@ -318,23 +318,23 @@
           <connect from_op="Select Features" from_port="example set output" to_op="Delete Missing Values" to_port="example set input"/>
           <connect from_op="Delete Missing Values" from_port="example set output" to_op="Replace Income Level" to_port="example set input"/>
           <connect from_op="Read Income Mapping CSV" from_port="output" to_op="Replace Income Level" to_port="dictionary"/>
-          <connect from_op="Replace Income Level" from_port="example set output" to_op="Parse Numbers Income" to_port="example set input"/>
-          <connect from_op="Parse Numbers Income" from_port="example set output" to_op="Replace Education" to_port="example set input"/>
+          <connect from_op="Replace Income Level" from_port="example set output" to_op="Income Parse Numbers" to_port="example set input"/>
+          <connect from_op="Income Parse Numbers" from_port="example set output" to_op="Replace Education" to_port="example set input"/>
           <connect from_op="Read Education Mappping CSV" from_port="output" to_op="Replace Education" to_port="dictionary"/>
-          <connect from_op="Replace Education" from_port="example set output" to_op="Parse Numbers Income (2)" to_port="example set input"/>
-          <connect from_op="Parse Numbers Income (2)" from_port="example set output" to_op="Multiply" to_port="input"/>
-          <connect from_op="Multiply" from_port="output 1" to_op="Pivot" to_port="input"/>
-          <connect from_op="Multiply" from_port="output 2" to_op="Pivot (2)" to_port="input"/>
-          <connect from_op="Multiply" from_port="output 3" to_op="Pivot (3)" to_port="input"/>
-          <connect from_op="Pivot (3)" from_port="output" to_op="Replace Missing Values (2)" to_port="example set input"/>
-          <connect from_op="Replace Missing Values (2)" from_port="example set output" to_op="Generate Attributes (2)" to_port="example set input"/>
-          <connect from_op="Generate Attributes (2)" from_port="example set output" to_op="Set Roles Ward (3)" to_port="example set input"/>
+          <connect from_op="Replace Education" from_port="example set output" to_op="Education Parse Numbers" to_port="example set input"/>
+          <connect from_op="Education Parse Numbers" from_port="example set output" to_op="Multiply" to_port="input"/>
+          <connect from_op="Multiply" from_port="output 1" to_op="Aggregate Data to Ward" to_port="input"/>
+          <connect from_op="Multiply" from_port="output 2" to_op="Education Aggregate to Ward" to_port="input"/>
+          <connect from_op="Multiply" from_port="output 3" to_op="Bankaccount Aggregate to Ward" to_port="input"/>
+          <connect from_op="Bankaccount Aggregate to Ward" from_port="output" to_op="Replace Missing Values (2)" to_port="example set input"/>
+          <connect from_op="Replace Missing Values (2)" from_port="example set output" to_op="Bankaccount calculate percentage" to_port="example set input"/>
+          <connect from_op="Bankaccount calculate percentage" from_port="example set output" to_op="Set Roles Ward (3)" to_port="example set input"/>
           <connect from_op="Set Roles Ward (3)" from_port="example set output" to_op="Join (2)" to_port="right"/>
-          <connect from_op="Pivot (2)" from_port="output" to_op="Replace Missing Values" to_port="example set input"/>
-          <connect from_op="Replace Missing Values" from_port="example set output" to_op="Generate Attributes" to_port="example set input"/>
-          <connect from_op="Generate Attributes" from_port="example set output" to_op="Set Roles Ward (2)" to_port="example set input"/>
+          <connect from_op="Education Aggregate to Ward" from_port="output" to_op="Replace Missing Values" to_port="example set input"/>
+          <connect from_op="Replace Missing Values" from_port="example set output" to_op="Education calculate percentage" to_port="example set input"/>
+          <connect from_op="Education calculate percentage" from_port="example set output" to_op="Set Roles Ward (2)" to_port="example set input"/>
           <connect from_op="Set Roles Ward (2)" from_port="example set output" to_op="Join" to_port="right"/>
-          <connect from_op="Pivot" from_port="output" to_op="Set Roles Ward" to_port="example set input"/>
+          <connect from_op="Aggregate Data to Ward" from_port="output" to_op="Set Roles Ward" to_port="example set input"/>
           <connect from_op="Set Roles Ward" from_port="example set output" to_op="Rename Features" to_port="example set input"/>
           <connect from_op="Rename Features" from_port="example set output" to_op="Join" to_port="left"/>
           <connect from_op="Join" from_port="join" to_op="Join (2)" to_port="left"/>
@@ -344,6 +344,7 @@
           <portSpacing port="source_in 2" spacing="0"/>
           <portSpacing port="sink_out 1" spacing="0"/>
           <portSpacing port="sink_out 2" spacing="0"/>
+          <description align="center" color="yellow" colored="false" height="87" resized="true" width="375" x="759" y="605">Education and Bankaccount are put into percentage values:&lt;br&gt;therefore values are counted per ward, afterwards number of positive cases is divided through total number of households in ward</description>
         </process>
       </operator>
       <connect from_op="Household Demografics" from_port="output" to_op="Population, Avarage Income, Education" to_port="in 1"/>
