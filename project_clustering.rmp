@@ -261,8 +261,9 @@
       <portSpacing port="sink_result 6" spacing="0"/>
       <portSpacing port="sink_result 7" spacing="0"/>
       <portSpacing port="sink_result 8" spacing="0"/>
-      <description align="center" color="yellow" colored="false" height="136" resized="true" width="118" x="496" y="177">Data is mutliplied for differenct algorithms (X_Means, k_Means and k_Medoids)</description>
-      <description align="center" color="yellow" colored="false" height="69" resized="true" width="176" x="1064" y="137">take performance output make it to one dataset and write a csv file</description>
+      <description align="center" color="yellow" colored="false" height="159" resized="true" width="119" x="496" y="177">Das Datenset wird &amp;#252;ber Multiply f&amp;#252;r die Verwendung in den verschiedenen Algorithmen vervielfacht.</description>
+      <description align="center" color="yellow" colored="false" height="90" resized="true" width="199" x="1064" y="137">Performance Output von Algorithmus wird in Dataobjekt umgewandelt und in eine CSV Datei geschrieben</description>
+      <description align="center" color="yellow" colored="false" height="235" resized="true" width="189" x="206" y="128">Mit Select Attributes werden verschieden Feature Kombinationen f&amp;#252;r das Clustering ausgew&amp;#228;hlt.&lt;br&gt;Kombination 1: Damage_Grade, has_water, Education&lt;br&gt;Kombination 2:&lt;br&gt;Damage_Grade, has_water, Education, Buildings, Death&lt;br/&gt;Kombination 3:&lt;br/&gt;alle au&amp;#223;er Bankaccount</description>
     </process>
   </operator>
 </process>

@@ -344,7 +344,7 @@
           <portSpacing port="source_in 2" spacing="0"/>
           <portSpacing port="sink_out 1" spacing="0"/>
           <portSpacing port="sink_out 2" spacing="0"/>
-          <description align="center" color="yellow" colored="false" height="87" resized="true" width="375" x="759" y="605">Education and Bankaccount are put into percentage values:&lt;br&gt;therefore values are counted per ward, afterwards number of positive cases is divided through total number of households in ward</description>
+          <description align="center" color="yellow" colored="false" height="142" resized="true" width="378" x="759" y="605">Education und Bankaccount werden in Prozentwerte umgewandelt. Daf&amp;#252;r werden zun&amp;#228;chst die Werte der Haush&amp;#228;lte (0 oder 1) per Ward aggregiert. Anschlie&amp;#223;end wird die Summe per Ward der positiven Werte (1) durch die Gesamtanzahl (0 und 1) per Ward geteilt. Das Ergebnis gibt somit an, wieviel Prozent der Haush&amp;#228;lte in einem Ward einen Bankaccount haben bzw. Bildung erhalten haben.</description>
         </process>
       </operator>
       <connect from_op="Household Demografics" from_port="output" to_op="Population, Avarage Income, Education" to_port="in 1"/>
