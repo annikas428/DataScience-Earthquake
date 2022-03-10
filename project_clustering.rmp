@@ -92,7 +92,7 @@
         <parameter key="kernel_a" value="1.0"/>
         <parameter key="kernel_b" value="0.0"/>
       </operator>
-      <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="103" name="k_Medoids Multi 2" width="90" x="782" y="697"/>
+      <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="124" name="k_Medoids Multi 2" width="90" x="782" y="697"/>
       <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="103" name="k_Medoids Multi 1" width="90" x="782" y="544"/>
       <operator activated="true" class="model_simulator:cluster_model_visualizer" compatibility="9.10.001" expanded="true" height="103" name="k_Medoids_Visualizer" width="90" x="916" y="697"/>
       <operator activated="true" class="cluster_distance_performance" compatibility="9.10.001" expanded="true" height="103" name="k_Medoids_Performance" width="90" x="916" y="544">
@@ -126,7 +126,7 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="124" name="k_Means Multi 2" width="90" x="782" y="391"/>
+      <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="145" name="k_Means Multi 2" width="90" x="782" y="391"/>
       <operator activated="true" class="write_csv" compatibility="9.10.001" expanded="true" height="82" name="Write CSV" width="90" x="1050" y="442">
         <parameter key="csv_file" value="C:/Users/Admin/Documents/RapidMiner/Local Repository/data/k_Means_cluster_output.csv"/>
         <parameter key="column_separator" value=";"/>
@@ -172,7 +172,7 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="103" name="X_Means Multi 2" width="90" x="782" y="136"/>
+      <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="124" name="X_Means Multi 2" width="90" x="782" y="136"/>
       <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="103" name="X_Means Multi 1" width="90" x="782" y="34"/>
       <operator activated="true" class="model_simulator:cluster_model_visualizer" compatibility="9.10.001" expanded="true" height="103" name="X_Means_Visualizer" width="90" x="916" y="136"/>
       <operator activated="true" class="cluster_distance_performance" compatibility="9.10.001" expanded="true" height="103" name="X_Means_Performance" width="90" x="916" y="34">
@@ -224,6 +224,7 @@
       <connect from_op="k_Medoids" from_port="clustered set" to_op="k_Medoids Multi 2" to_port="input"/>
       <connect from_op="k_Medoids Multi 2" from_port="output 1" to_op="k_Medoids_Performance" to_port="example set"/>
       <connect from_op="k_Medoids Multi 2" from_port="output 2" to_op="k_Medoids_Visualizer" to_port="clustered data"/>
+      <connect from_op="k_Medoids Multi 2" from_port="output 3" to_port="result 10"/>
       <connect from_op="k_Medoids Multi 1" from_port="output 1" to_op="k_Medoids_Performance" to_port="cluster model"/>
       <connect from_op="k_Medoids Multi 1" from_port="output 2" to_op="k_Medoids_Visualizer" to_port="model"/>
       <connect from_op="k_Medoids_Visualizer" from_port="visualizer output" to_port="result 5"/>
@@ -233,6 +234,7 @@
       <connect from_op="k_Means Multi 2" from_port="output 1" to_op="k_Means_Performance" to_port="example set"/>
       <connect from_op="k_Means Multi 2" from_port="output 2" to_op="k_Means_Visualizer" to_port="clustered data"/>
       <connect from_op="k_Means Multi 2" from_port="output 3" to_op="Write CSV" to_port="input"/>
+      <connect from_op="k_Means Multi 2" from_port="output 4" to_port="result 9"/>
       <connect from_op="k_Means Mutli 1" from_port="output 1" to_op="k_Means_Performance" to_port="cluster model"/>
       <connect from_op="k_Means Mutli 1" from_port="output 2" to_op="k_Means_Visualizer" to_port="model"/>
       <connect from_op="k_Means_Visualizer" from_port="visualizer output" to_port="result 6"/>
@@ -241,6 +243,7 @@
       <connect from_op="X_Means" from_port="clustered set" to_op="X_Means Multi 2" to_port="input"/>
       <connect from_op="X_Means Multi 2" from_port="output 1" to_op="X_Means_Performance" to_port="example set"/>
       <connect from_op="X_Means Multi 2" from_port="output 2" to_op="X_Means_Visualizer" to_port="clustered data"/>
+      <connect from_op="X_Means Multi 2" from_port="output 3" to_port="result 8"/>
       <connect from_op="X_Means Multi 1" from_port="output 1" to_op="X_Means_Performance" to_port="cluster model"/>
       <connect from_op="X_Means Multi 1" from_port="output 2" to_op="X_Means_Visualizer" to_port="model"/>
       <connect from_op="X_Means_Visualizer" from_port="visualizer output" to_port="result 2"/>
@@ -261,6 +264,9 @@
       <portSpacing port="sink_result 6" spacing="0"/>
       <portSpacing port="sink_result 7" spacing="0"/>
       <portSpacing port="sink_result 8" spacing="0"/>
+      <portSpacing port="sink_result 9" spacing="0"/>
+      <portSpacing port="sink_result 10" spacing="0"/>
+      <portSpacing port="sink_result 11" spacing="0"/>
       <description align="center" color="yellow" colored="false" height="159" resized="true" width="119" x="496" y="177">Das Datenset wird &amp;#252;ber Multiply f&amp;#252;r die Verwendung in den verschiedenen Algorithmen vervielfacht.</description>
       <description align="center" color="yellow" colored="false" height="90" resized="true" width="199" x="1064" y="137">Performance Output von Algorithmus wird in Dataobjekt umgewandelt und in eine CSV Datei geschrieben</description>
       <description align="center" color="yellow" colored="false" height="235" resized="true" width="189" x="206" y="128">Mit Select Attributes werden verschieden Feature Kombinationen f&amp;#252;r das Clustering ausgew&amp;#228;hlt.&lt;br&gt;Kombination 1: Damage_Grade, has_water, Education&lt;br&gt;Kombination 2:&lt;br&gt;Damage_Grade, has_water, Education, Buildings, Death&lt;br/&gt;Kombination 3:&lt;br/&gt;alle au&amp;#223;er Bankaccount</description>
